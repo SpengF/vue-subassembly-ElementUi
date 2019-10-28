@@ -30,8 +30,8 @@
       background
       layout="prev, pager, next"
       :hide-on-single-page='hidePage'
-      :page-size='paginationObject.size'
-      :total="paginationObject.total"
+      :page-size='size'
+      :total="total"
       @current-change='currentPage'
       >
     </el-pagination>
@@ -50,11 +50,14 @@ export default class informationList extends Vue{
   private radioInfomation: string='';  //单选框选中的数据
   private multipleSelection: Array<Object>=[]; //多选框选中的数据
   @Prop() private tableData?: Array<Object>;
-  @Prop() private paginationObject!: Page;
+  @Prop() private total!: Number;
+  @Prop({
+    default:10
+  }) private size!: Number;
   @Prop() private titleAndList!: Array<Object>;
   @Prop({default:false}) private userRadio!: Boolean;
   get hidePage(): Boolean{   //当显示为一页的时候就隐藏掉
-    return this.paginationObject.total%this.paginationObject.size<1||this.paginationObject.total%this.paginationObject.size==1;
+    return (this as any).total%(this as any).size<1||(this as any).total%(this as any).size==1;
   }
   radioChange(val: string):void{
     this.radioInfomation=val;
@@ -68,6 +71,9 @@ export default class informationList extends Vue{
 }
 </script>
 
-<style>
-
+<style lang='scss'>
+.el-pagination{
+  text-align: center;
+  padding-top: 20px;
+}
 </style>

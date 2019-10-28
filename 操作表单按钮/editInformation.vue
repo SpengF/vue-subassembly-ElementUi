@@ -2,8 +2,8 @@
   <div class="editInformation">
     <div class="editInformationLeft">
       <div @click="visibilityEle" class="leftIcon">
-        <span class="el-icon-arrow-down" v-if="arrowShow"></span>
-        <span class="el-icon-arrow-right" v-if="!arrowShow"></span>
+        <span class="el-icon-arrow-down" v-if="myarrowShow"></span>
+        <span class="el-icon-arrow-right" v-if="!myarrowShow"></span>
         {{titleLeft}}
       </div>
     </div>
@@ -18,14 +18,18 @@ import { Component,Prop,Vue,Emit} from 'vue-property-decorator';
 @Component
 export default class editInformation extends Vue{
   @Prop() private titleLeft?:String
-  arrowShow=false
+  @Prop({
+    type:Boolean,
+    default:false
+  }) private showList!:Boolean
+  myarrowShow=this.showList
   @Emit()
   visibilityEle(){
-    this.arrowShow=!this.arrowShow
+    this.myarrowShow=!this.myarrowShow
   }
 }
 </script>
-<style lang='less'>
+<style lang='scss'>
 .editInformation{
   display: flex;
   justify-content: space-between;
@@ -37,6 +41,7 @@ export default class editInformation extends Vue{
     .leftIcon{
       cursor: pointer;
       user-select:none;
+      padding-left:10px;
     }
   }
   .editInformationRight{

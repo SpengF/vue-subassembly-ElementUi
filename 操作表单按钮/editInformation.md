@@ -3,6 +3,7 @@
 --|:--|:--|
 titleLeft|栏目显示标题|string
 visibility-ele|点击展开关闭回调函数|function
+showList|是否为展开状态（默认为false）|Boolean
 ```javascript
 <EditInformation titleLeft='不定期承保管理' @visibility-ele='callback'>
   <el-button type="primary">主要按钮</el-button>
