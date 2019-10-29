@@ -28,7 +28,7 @@
     </el-table>
     <el-pagination
       background
-      layout="prev, pager, next"
+      layout="total,prev, pager, next,jumper"
       :hide-on-single-page='hidePage'
       :page-size='size'
       :total="total"
@@ -71,7 +71,7 @@ export default class informationList extends Vue{
 }
 </script>
 
-<style lang='scss'>
+<style lang='less'>
 .el-pagination{
   text-align: center;
   padding-top: 20px;
