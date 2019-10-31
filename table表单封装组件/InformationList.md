@@ -10,7 +10,7 @@ onInfinite | 组件方法（点击分页按钮的回调） | 回调函数为当�
 ---
 获取选中的单选框内容this.$refs.informationList.radioInfomation      //Object
 获取选中的多选框内容this.$refs.informationList.multipleSelection    //Array
-
+清空单选框内容及选中状态 this.$refs.informationList.resetRadio()    //function
 ``` javascript
  <InformationList v-show="a" ref="informationList" :total='total' :tableData="tableData" :titleAndList='titleAndList' @onInfinite='onInfinite>
       </InformationList>
