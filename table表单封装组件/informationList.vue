@@ -16,6 +16,11 @@
           fixed
           >
         </el-table-column>
+        <el-table-column
+          type="index"
+          label="序"
+          >
+        </el-table-column>
         <template v-for="item in titleAndList" :keys="item.prop">
           <el-table-column  :label="item.lable"
           :width="item.width"
@@ -48,30 +53,26 @@ interface Page {
 export default class informationList extends Vue{
   private radio: number=-1;
   private radioInfomation: string='';  //单选框选中的数据
-  private multipleSelection: Array<Object>=[]; //多选框选中的数据
-  @Prop() private tableData?: Array<Object>;
-  @Prop() private total!: Number;
+  private multipleSelection: Array<object>=[]; //多选框选中的数据
+  @Prop() private tableData?: Array<object>;
+  @Prop() private total!: number;
   @Prop({
     default:10
-  }) private size!: Number;
-  @Prop() private titleAndList!: Array<Object>;
-  @Prop({default:false}) private userRadio!: Boolean;
-  get hidePage(): Boolean{   //当显示为一页的时候就隐藏掉
+  }) private size!: number;
+  @Prop() private titleAndList!: Array<object>;
+  @Prop({default:false}) private userRadio!: boolean;
+  get hidePage(): boolean{   //当显示为一页的时候就隐藏掉
     return (this as any).total%(this as any).size<1||(this as any).total%(this as any).size==1;
   }
   radioChange(val: string):void{
     this.radioInfomation=val;
   };
-  handleSelectionChange(val: Array<Object>):void{
+  handleSelectionChange(val: Array<object>):void{
     this.multipleSelection = val;
   }
   @Emit('onInfinite')
   currentPage(val: number):number{
     return val;
-  }
-  resetRadio(){
-    this.radio=-1;
-    this.radioInfomation='';   //选中数据清空，让用户自己再进行选择
   }
 }
 </script>
@@ -80,6 +81,9 @@ export default class informationList extends Vue{
 .el-pagination{
   text-align: center;
   padding-top: 20px;
+}
+tr.el-table__row td:nth-child(2) {
+  text-align: center;
 }
 .el-table__fixed{
   height:100% !important;
