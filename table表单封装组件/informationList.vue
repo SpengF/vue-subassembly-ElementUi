@@ -65,8 +65,9 @@ export default class informationList extends Vue{
   handleSelectionChange(val: Array<Object>):void{
     this.multipleSelection = val;
   }
-  currentPage(val: number):void{
-    (this as any).$parent.onInfinite(val)
+  @Emit('onInfinite')
+  currentPage(val: number):number{
+    return val;
   }
 }
 </script>

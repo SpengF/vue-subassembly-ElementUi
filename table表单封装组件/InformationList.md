@@ -6,13 +6,13 @@ userRadio | 是否显示单选框（默认为false显示多选框） | Boolean
 titleAndList | 整个表格需要显示哪些列数以及表头内容 | Array<Object>
 size|每页显示页数(不传默认每页10条)|Bumber
 total|总页数|Number
-onInfinite | 不用在组件定义，直接写在父组件methods中(分页请求数据) | 回调函数为当前页码
+onInfinite | 组件方法（点击分页按钮的回调） | 回调函数为当前页码
 ---
 获取选中的单选框内容this.$refs.informationList.radioInfomation      //Object
 获取选中的多选框内容this.$refs.informationList.multipleSelection    //Array
 
 ``` javascript
- <InformationList v-show="a" ref="informationList" :total='total' :tableData="tableData" :titleAndList='titleAndList'>
+ <InformationList v-show="a" ref="informationList" :total='total' :tableData="tableData" :titleAndList='titleAndList' @onInfinite='onInfinite>
       </InformationList>
       titleAndList=[
       {width:'120',lable:'xiaoming',prop:'dates'},
