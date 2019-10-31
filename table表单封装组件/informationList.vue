@@ -39,14 +39,14 @@
 </template>
 
 <script lang ='ts'>
-import { Component,Prop,Vue,Emit} from 'vue-property-decorator';
+import { Component,Prop,Vue,Emit,Watch} from 'vue-property-decorator';
 interface Page {
   total:number,
   size:number
 }
 @Component
 export default class informationList extends Vue{
-  private radio: string='radio';
+  private radio: number=-1;
   private radioInfomation: string='';  //单选框选中的数据
   private multipleSelection: Array<Object>=[]; //多选框选中的数据
   @Prop() private tableData?: Array<Object>;
@@ -69,12 +69,19 @@ export default class informationList extends Vue{
   currentPage(val: number):number{
     return val;
   }
+  resetRadio(){
+    this.radio=-1;
+    this.radioInfomation='';   //选中数据清空，让用户自己再进行选择
+  }
 }
 </script>
 
-<style lang='less'>
+<style lang='scss'>
 .el-pagination{
   text-align: center;
   padding-top: 20px;
+}
+.el-table__fixed{
+  height:100% !important;
 }
 </style>
